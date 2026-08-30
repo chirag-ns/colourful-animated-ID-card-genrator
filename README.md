@@ -2,6 +2,8 @@
 
 A colourful, animated ID card (boarding pass) generator for Hacker House Goa 2026. Built by **Chirag N S**.
 
+**🚀 Live Demo:** [https://hhgoa-boardingpass.vercel.app/](https://hhgoa-boardingpass.vercel.app/)
+
 ## Features
 
 - **Interactive UI**: Engaging, animated landing page featuring a tropical Goan theme.
