@@ -1,6 +1,6 @@
 # Hacker House Goa 2026 - Boarding Pass Generator
 
-A colourful, animated ID card (boarding pass) generator for Hacker House Goa 2026. Built by **Team Tenac**.
+A colourful, animated ID card (boarding pass) generator for Hacker House Goa 2026. Built by **Chirag N S**.
 
 ## Features
 
@@ -16,11 +16,9 @@ A colourful, animated ID card (boarding pass) generator for Hacker House Goa 202
 - [qrcode](https://www.npmjs.com/package/qrcode) - QR Code generation
 - [heic2any](https://www.npmjs.com/package/heic2any) - HEIC image support
 
-## Team Tenac
+## Creator
 
 - [Chirag N S](https://www.linkedin.com/in/chirag-n-s-a3ac70372)
-- [Shishir S](https://www.linkedin.com/in/shishir-s-5b1020309)
-- [Ayush Kumar](https://www.linkedin.com/in/ayush-kumar-967346410)
 
 ## Getting Started
 
