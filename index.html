@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Boarding Pass — Hacker House Goa</title>
+  <meta name="description" content="Generate your boarding pass to Hacker House Goa. Upload your photo, pick your builder class, and share your pass." />
+  <meta name="theme-color" content="#0B6839" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Imbue:opsz,wght@10..100,400..900&family=Space+Mono:wght@400;700&family=Victor+Mono:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+  <link rel="icon" href="/favicon.ico" />
+</head>
+<body>
+
+  <!-- Floating Sound Mute/Unmute Toggle Button -->
+  <button class="sound-toggle" id="soundToggle" title="Toggle sound">
+    <svg id="soundMutedIcon" viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+      <path d="M3.636 3.636a.75.75 0 011.06 0l15.66 15.66a.75.75 0 01-1.06 1.06l-2.618-2.617A8.966 8.966 0 0112 19.5c-4.142 0-7.5-3.358-7.5-7.5 0-1.637.524-3.15 1.417-4.382L3.636 4.697a.75.75 0 010-1.061zM12 6a5.978 5.978 0 014.243 1.757l-1.414 1.415A3.978 3.978 0 0012 8a4 4 0 00-4 4c0 .552.112 1.078.314 1.557L6.8 15.07A5.98 5.98 0 016 12a6 6 0 016-6z"/>
+    </svg>
+    <svg id="soundActiveIcon" viewBox="0 0 24 24" width="20" height="20" fill="currentColor" style="display:none">
+      <path d="M13.5 4.06c0-1.336-1.616-2.005-2.56-1.06l-4.5 4.5H3.75A1.75 1.75 0 002 9.25v5.5c0 .966.784 1.75 1.75 1.75h2.69l4.5 4.5c.944.945 2.56.276 2.56-1.06V4.06zM18.53 7.47a.75.75 0 00-1.06 1.06 5.5 5.5 0 010 7.78.75.75 0 101.06 1.06 7 7 0 000-9.9s0 0 0 0z"/>
+    </svg>
+  </button>
+
+  <!-- ═══════════ SCREEN 1 — Animated Intro & Landing Page ═══════════ -->
+  <div id="introScreen" class="screen intro-screen active">
+    
+    <!-- Top Navigation Bar on Intro Page -->
+    <nav class="intro-nav">
+      <div class="intro-nav-brand">
+        <img src="/hh-goa-logo.png" alt="HH Goa" class="intro-nav-logo" />
+        <span class="intro-nav-title">HH GOA 2026</span>
+      </div>
+      <div class="intro-nav-links">
+        <button type="button" class="nav-link-btn" id="navAboutBtn">About Us</button>
+        <button type="button" class="nav-cta-btn" id="navPassBtn">Generate Pass</button>
+      </div>
+    </nav>
+
+    <!-- Illustrated Goan scene background -->
+    <div class="intro-scene">
+      <img src="/intro-scene.png" alt="" class="intro-scene-img" />
+
+      <!-- Interactive & Animated Overlays -->
+      <div class="intro-overlay">
+
+        <!-- 💡 Festive Beach String Lights -->
+        <div class="string-lights-wrap">
+          <svg viewBox="0 0 1440 80" preserveAspectRatio="none" class="string-lights-svg">
+            <path d="M0,10 Q360,60 720,20 Q1080,60 1440,10" fill="none" stroke="rgba(254,225,1,0.4)" stroke-width="2"/>
+            <!-- Twinkling Bulbs -->
+            <circle cx="120" cy="28" r="7" class="bulb bulb-y"/>
+            <circle cx="280" cy="42" r="7" class="bulb bulb-m"/>
+            <circle cx="440" cy="32" r="7" class="bulb bulb-w"/>
+            <circle cx="600" cy="22" r="7" class="bulb bulb-y"/>
+            <circle cx="760" cy="24" r="7" class="bulb bulb-m"/>
+            <circle cx="920" cy="40" r="7" class="bulb bulb-w"/>
+            <circle cx="1080" cy="42" r="7" class="bulb bulb-y"/>
+            <circle cx="1240" cy="26" r="7" class="bulb bulb-m"/>
+            <circle cx="1380" cy="14" r="7" class="bulb bulb-w"/>
+          </svg>
+        </div>
+
+        <!-- 🌴 Swaying Palm Tree Overlays (Left & Right) -->
+        <svg class="palm-overlay palm-left" viewBox="0 0 200 300">
+          <g class="palm-fronds-left">
+            <path d="M100 220 Q40 160 10 180 Q60 140 100 220" fill="#0B6E3D" opacity="0.8"/>
+            <path d="M100 220 Q20 120 0 130 Q50 100 100 220" fill="#064D2A" opacity="0.9"/>
+            <path d="M100 220 Q50 80 30 70 Q70 70 100 220" fill="#0d7d45" opacity="0.85"/>
+            <path d="M100 220 Q120 70 140 60 Q110 90 100 220" fill="#064D2A" opacity="0.9"/>
+          </g>
+        </svg>
+
+        <svg class="palm-overlay palm-right" viewBox="0 0 200 300">
+          <g class="palm-fronds-right">
+            <path d="M100 220 Q160 160 190 180 Q140 140 100 220" fill="#0B6E3D" opacity="0.8"/>
+            <path d="M100 220 Q180 120 200 130 Q150 100 100 220" fill="#064D2A" opacity="0.9"/>
+            <path d="M100 220 Q150 80 170 70 Q130 70 100 220" fill="#0d7d45" opacity="0.85"/>
+          </g>
+        </svg>
+
+        <!-- 🏄 Goan Surfboards (Left & Right Beach Accents) -->
+        <div class="surfboard-wrap surfboard-left">
+          <svg viewBox="0 0 40 140" width="36" height="126">
+            <ellipse cx="20" cy="70" rx="16" ry="65" fill="#FEE101" stroke="#064D2A" stroke-width="3"/>
+            <path d="M20,5 L20,135" stroke="#E6007E" stroke-width="4"/>
+            <circle cx="20" cy="40" r="6" fill="#0B6839"/>
+            <circle cx="20" cy="100" r="6" fill="#0B6839"/>
+          </svg>
+        </div>
+
+        <div class="surfboard-wrap surfboard-right">
+          <svg viewBox="0 0 40 140" width="34" height="120">
+            <ellipse cx="20" cy="70" rx="16" ry="65" fill="#E6007E" stroke="#FEE101" stroke-width="3"/>
+            <path d="M20,5 L20,135" fill="none" stroke="#FEE101" stroke-width="4"/>
+            <polygon points="20,30 26,42 14,42" fill="#FFFFFF"/>
+            <polygon points="20,95 26,107 14,107" fill="#FFFFFF"/>
+          </svg>
+        </div>
+
+        <!-- 🌺 Blooming Hibiscus Flowers -->
+        <div class="hibiscus-wrap hibiscus-left">
+          <svg viewBox="0 0 60 60" width="48" height="48">
+            <g class="hibiscus-petals">
+              <path d="M30 30 Q15 5 30 5 Q45 5 30 30" fill="#E6007E"/>
+              <path d="M30 30 Q55 15 55 30 Q55 45 30 30" fill="#E6007E"/>
+              <path d="M30 30 Q45 55 30 55 Q15 55 30 30" fill="#E6007E"/>
+              <path d="M30 30 Q5 45 5 30 Q5 15 30 30" fill="#E6007E"/>
+            </g>
+            <circle cx="30" cy="30" r="7" fill="#FEE101"/>
+          </svg>
+        </div>
+
+        <div class="hibiscus-wrap hibiscus-right">
+          <svg viewBox="0 0 60 60" width="44" height="44">
+            <g class="hibiscus-petals">
+              <path d="M30 30 Q15 5 30 5 Q45 5 30 30" fill="#E6007E"/>
+              <path d="M30 30 Q55 15 55 30 Q55 45 30 30" fill="#E6007E"/>
+              <path d="M30 30 Q45 55 30 55 Q15 55 30 30" fill="#E6007E"/>
+              <path d="M30 30 Q5 45 5 30 Q5 15 30 30" fill="#E6007E"/>
+            </g>
+            <circle cx="30" cy="30" r="7" fill="#FEE101"/>
+          </svg>
+        </div>
+
+        <!-- 🛵 Cruising Goan Scooter Animation -->
+        <div class="scooter-anim">
+          <svg viewBox="0 0 100 65" width="80" height="52">
+            <!-- Scooter Body -->
+            <path d="M15,45 Q25,25 45,28 L65,30 Q80,30 88,40 Q92,48 85,52 L20,52 Z" fill="#FEE101" stroke="#064D2A" stroke-width="2.5"/>
+            <!-- Seat -->
+            <path d="M35,28 Q48,20 62,28 Z" fill="#E6007E"/>
+            <!-- Wheels -->
+            <circle cx="28" cy="52" r="10" fill="#111" stroke="#FEE101" stroke-width="3"/>
+            <circle cx="76" cy="52" r="10" fill="#111" stroke="#FEE101" stroke-width="3"/>
+            <!-- Headlight & Handle -->
+            <path d="M78,18 L84,30" stroke="#064D2A" stroke-width="3.5"/>
+            <circle cx="78" cy="18" r="5" fill="#FFF" stroke="#FEE101" stroke-width="2"/>
+            <!-- Exhaust Puff -->
+            <circle cx="10" cy="50" r="3" class="exhaust-puff"/>
+          </svg>
+        </div>
+
+        <!-- 🌊 Ocean Waves at Bottom -->
+        <svg class="intro-waves" viewBox="0 0 1440 140" preserveAspectRatio="none">
+          <path class="wave wave-1" d="M0,60 C180,120 360,0 540,60 C720,120 900,0 1080,60 C1260,120 1440,0 1440,60 L1440,140 L0,140 Z" />
+          <path class="wave wave-2" d="M0,80 C180,30 360,100 540,60 C720,20 900,90 1080,50 C1260,10 1440,80 1440,80 L1440,140 L0,140 Z" />
+          <path class="wave wave-3" d="M0,100 C200,60 400,120 600,80 C800,40 1000,110 1200,70 C1350,40 1440,90 1440,90 L1440,140 L0,140 Z" />
+        </svg>
+
+        <!-- 🕊️ Flying Birds with Flapping Wings -->
+        <div class="intro-bird bird-1">
+          <svg viewBox="0 0 40 20" width="32">
+            <path class="bird-wing left-wing" d="M20,10 Q10,-5 0,8" fill="none" stroke="#064D2A" stroke-width="2.5" stroke-linecap="round"/>
+            <path class="bird-wing right-wing" d="M20,10 Q30,-5 40,8" fill="none" stroke="#064D2A" stroke-width="2.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="intro-bird bird-2">
+          <svg viewBox="0 0 40 20" width="24">
+            <path class="bird-wing left-wing" d="M20,10 Q10,-5 0,8" fill="none" stroke="#064D2A" stroke-width="2.5" stroke-linecap="round"/>
+            <path class="bird-wing right-wing" d="M20,10 Q30,-5 40,8" fill="none" stroke="#064D2A" stroke-width="2.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="intro-bird bird-3">
+          <svg viewBox="0 0 40 20" width="20">
+            <path class="bird-wing left-wing" d="M20,10 Q10,-5 0,8" fill="none" stroke="#064D2A" stroke-width="2.5" stroke-linecap="round"/>
+            <path class="bird-wing right-wing" d="M20,10 Q30,-5 40,8" fill="none" stroke="#064D2A" stroke-width="2.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+
+        <!-- ☀️ Sunlight Shimmer & Floating Sparkle Particles -->
+        <div class="sunbeam"></div>
+        <div class="particle p1"></div>
+        <div class="particle p2"></div>
+        <div class="particle p3"></div>
+        <div class="particle p4"></div>
+        <div class="particle p5"></div>
+        <div class="particle p6"></div>
+      </div>
+
+      <!-- ⚡ 3D Logo Entrance -->
+      <div class="intro-logo-wrap" id="introLogo">
+        <img src="/hh-goa-logo.png" alt="Hacker House Goa" class="intro-logo-img" />
+        <div class="intro-tagline">28 – 31 OCT 2026 · GOA, INDIA</div>
+
+        <!-- Action Buttons -->
+        <div class="intro-actions">
+          <button type="button" class="hero-cta-btn" id="startFormBtn">Generate Boarding Pass</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════ ABOUT US SECTION ═══════════ -->
+    <section class="about-us-section" id="aboutUsSection">
+      <div class="about-container">
+        <div class="about-header">
+          <span class="about-pill">TEAM TENAC</span>
+          <h2 class="about-title">About Us</h2>
+          <p class="about-subtitle">
+            Meet Team Tenac. Click on any member to view their LinkedIn profile.
+          </p>
+        </div>
+
+        <div class="team-grid">
+          <!-- Member 1: Chirag N S -->
+          <a href="https://www.linkedin.com/in/chirag-n-s-a3ac70372" target="_blank" rel="noopener noreferrer" class="member-card">
+            <div class="member-avatar-wrap">
+              <div class="member-avatar avatar-cn">CN</div>
+              <div class="linkedin-icon-badge">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
+                  <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
+                </svg>
+              </div>
+            </div>
+            <div class="member-details">
+              <h3 class="member-name">Chirag N S</h3>
+              <span class="member-role">Team Tenac Member</span>
+              <span class="linkedin-link-text">linkedin.com/in/chirag-n-s-a3ac70372</span>
+            </div>
+          </a>
+
+          <!-- Member 2: Shishir S -->
+          <a href="https://www.linkedin.com/in/shishir-s-5b1020309" target="_blank" rel="noopener noreferrer" class="member-card">
+            <div class="member-avatar-wrap">
+              <div class="member-avatar avatar-ss">SS</div>
+              <div class="linkedin-icon-badge">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
+                  <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
+                </svg>
+              </div>
+            </div>
+            <div class="member-details">
+              <h3 class="member-name">Shishir S</h3>
+              <span class="member-role">Team Tenac Member</span>
+              <span class="linkedin-link-text">linkedin.com/in/shishir-s-5b1020309</span>
+            </div>
+          </a>
+
+          <!-- Member 3: Ayush Kumar -->
+          <a href="https://www.linkedin.com/in/ayush-kumar-967346410" target="_blank" rel="noopener noreferrer" class="member-card">
+            <div class="member-avatar-wrap">
+              <div class="member-avatar avatar-ak">AK</div>
+              <div class="linkedin-icon-badge">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
+                  <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
+                </svg>
+              </div>
+            </div>
+            <div class="member-details">
+              <h3 class="member-name">Ayush Kumar</h3>
+              <span class="member-role">Team Tenac Member</span>
+              <span class="linkedin-link-text">linkedin.com/in/ayush-kumar-967346410</span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ═══════════ SCREEN 2 — Form ═══════════ -->
+  <div id="formScreen" class="screen form-screen">
+    <!-- Ambient animated background -->
+    <div class="form-bg">
+      <div class="form-bg-gradient"></div>
+      <img src="/intro-scene.png" alt="" class="form-bg-scene" />
+      <img src="/hhgoa_assets/footer_trees.png" alt="" class="form-bg-trees" />
+      <svg class="form-bg-waves" viewBox="0 0 1440 200" preserveAspectRatio="none">
+        <path class="form-wave fw-1" d="M0,100 C360,180 720,20 1080,100 C1260,140 1440,60 1440,100 L1440,200 L0,200 Z"/>
+        <path class="form-wave fw-2" d="M0,120 C240,60 480,160 720,100 C960,40 1200,140 1440,80 L1440,200 L0,200 Z"/>
+      </svg>
+      <div class="form-float f1"></div>
+      <div class="form-float f2"></div>
+      <div class="form-float f3"></div>
+    </div>
+
+    <div class="form-container">
+      <div class="form-header">
+        <img src="/hh-goa-logo.png" alt="HH Goa" class="form-logo" />
+        <h1 class="form-title">Board Your Pass</h1>
+        <div class="form-header-tags">
+          <span class="form-brand-tag">GOA, INDIA · 28–31 OCT 2026</span>
+          <span class="form-studio-tag">2:47 PM STUDIO</span>
+        </div>
+        <p class="form-subtitle">Fill in your details to generate your boarding pass</p>
+      </div>
+
+      <!-- SOLO FORM SECTION -->
+      <div class="form-section" id="soloFormSection">
+        <!-- 1. Photo Upload -->
+        <label class="upload-btn" id="uploadBtn">
+          <svg viewBox="0 0 24 24"><path d="M12 5.5a.75.75 0 01.75.75v4h4a.75.75 0 010 1.5h-4v4a.75.75 0 01-1.5 0v-4h-4a.75.75 0 010-1.5h4v-4A.75.75 0 0112 5.5z"/><path fill-rule="evenodd" d="M9.77 3.346a2.75 2.75 0 014.46 0l.632.877A1.25 1.25 0 0015.88 4.8h.37A2.75 2.75 0 0119 7.55v8.9A2.75 2.75 0 0116.25 19.2H7.75A2.75 2.75 0 015 16.45v-8.9A2.75 2.75 0 017.75 4.8h.37c.402 0 .779-.194 1.017-.577l.632-.877zM12 8a4.5 4.5 0 100 9 4.5 4.5 0 000-9z" clip-rule="evenodd"/></svg>
+          <span id="uploadLabel">Upload Photo</span>
+          <input type="file" id="photoInput" accept="image/*,.heic,.heif" />
+        </label>
+
+        <!-- Photo preview thumbnail -->
+        <div class="photo-thumb-wrap" id="photoThumbWrap" style="display:none">
+          <img id="photoThumb" class="photo-thumb" alt="Your photo" />
+          <span class="photo-thumb-change">Tap to change</span>
+        </div>
+
+        <!-- 2. Name -->
+        <div class="form-group">
+          <label for="nameInput">Name</label>
+          <input type="text" id="nameInput" placeholder="Your Name" maxlength="30" autocomplete="name" />
+        </div>
+
+        <!-- 3. Designation / Stack -->
+        <div class="form-group">
+          <label for="stackInput">Designation / Stack</label>
+          <input type="text" id="stackInput" maxlength="60" />
+        </div>
+
+        <!-- 4. City (From) — optional -->
+        <div class="form-group">
+          <label for="cityInput">From (optional)</label>
+          <input type="text" id="cityInput" placeholder="EVERYWHERE" maxlength="25" />
+        </div>
+      </div>
+
+
+
+      <!-- Continue button -->
+      <button class="continue-btn" id="continueBtn">
+        Generate Boarding Pass
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- ═══════════ SCREEN 3 — Card Preview ═══════════ -->
+  <div id="cardScreen" class="screen card-screen">
+    <div class="card-container">
+      <!-- Top Nav Branding -->
+      <div class="card-top-nav">
+        <button class="back-btn" id="backBtn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+          Edit Details
+        </button>
+        <div class="card-screen-title">HH GOA 2026</div>
+      </div>
+
+      <!-- 🔍 High Visibility Top Zoom Controls (Positioned ABOVE Preview Canvas) -->
+      <div class="zoom-controls-top" id="zoomControls">
+        <span class="zoom-label">🔍 ZOOM</span>
+        <div class="zoom-btn-group">
+          <button type="button" class="zoom-btn" id="zoomOutBtn" title="Zoom Out (–)">−</button>
+          <input type="range" id="zoomRange" min="100" max="300" value="100" step="5" class="zoom-slider" />
+          <button type="button" class="zoom-btn" id="zoomInBtn" title="Zoom In (+)">+</button>
+        </div>
+        <span class="zoom-val-badge" id="zoomValBadge">100%</span>
+      </div>
+
+      <!-- Live Canvas Preview -->
+      <div class="preview-wrap" id="previewWrap">
+        <canvas id="passCanvas"></canvas>
+        <div class="preview-hint" id="previewHint">Drag to reposition photo</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sticky Bottom Bar (card screen only) -->
+  <div class="bottom-bar" id="bottomBar" style="display:none">
+    <button class="btn-download" id="downloadBtn">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      Download
+    </button>
+    <button class="btn-share" id="shareBtn">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v8a2 2 0 002 2h12a2 2 0 002-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>
+      Share to 𝕏
+    </button>
+  </div>
+
+  <!-- Loading overlay -->
+  <div class="loading-overlay" id="loadingOverlay">
+    <div class="loading-spinner"></div>
+  </div>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
